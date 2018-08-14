@@ -2,6 +2,7 @@
  * Created by Carlos de la Sierra on 8/2/17.
  */
 package components.screenNavigator {
+import flash.display.Bitmap;
 import flash.display.Sprite;
 
 public class ScreenNavigator extends Sprite {
@@ -21,6 +22,7 @@ public class ScreenNavigator extends Sprite {
         _popupId = popupId;
     }
 
+//    Config
     public function getScreen(id:String):ScreenModel {
         for (var i:uint = 0; i < _screens.length; i++) {
             if (_screens[i].id == id) {
@@ -31,7 +33,13 @@ public class ScreenNavigator extends Sprite {
         return null;
     }
 
+    public function setBackground(embedImageClass: Class):void {
+        var bk:Bitmap = new embedImageClass as Bitmap;
+        addChild(bk);
+    }
+
     public function addScreen(screenType:Class, id:String, nextScreenId:String = null):void {
+//    public function addScreen(screenType:Class, id:String, nextScreenId:String = null, controller: * = null):void {
         var screen:ScreenModel = new screenType();
         screen.addEventListener(EventsNavigation.HOME, showHome);
         screen.addEventListener(EventsNavigation.ADMIN, showAdmin);
@@ -43,6 +51,7 @@ public class ScreenNavigator extends Sprite {
         screen.id = id;
         screen.index = _screens.length;
         screen.loaded = false;
+//        screen.controller = controller;
         _screens[screen.index] = screen;
     }
 
@@ -54,8 +63,8 @@ public class ScreenNavigator extends Sprite {
         }
     }
 
-
-    public function showScreen(id:String, prevId:String = null, data: Object = null):void {
+//    Action
+    public function showScreen(id:String, prevId:String = null, data:Object = null):void {
         //remove current screen
         removeScreen(_activeScreenId);
         //show new screen
@@ -68,6 +77,9 @@ public class ScreenNavigator extends Sprite {
         }
         if (prevId) {
             newScreen.prevScreenId = prevId;
+        }
+        if (data) {
+            newScreen.data = data;
         }
         _activeScreenId = id;
         this.setChildIndex(newScreen, this.numChildren - 1);
@@ -114,42 +126,16 @@ public class ScreenNavigator extends Sprite {
         }
         _activePopupId = popup.id;
         this.setChildIndex(popup, this.numChildren - 1);
-
-
-//        if (e.data.popupId) {
-//            popup = getScreen(e.data.popupId);
-//            loadPopup(popup, e.data);
-//        } else if (_popupId) {
-//            popup = getScreen(_popupId);
-//            loadPopup(popup, e.data);
-//        } else {
-//            trace("ERROR: there is no POPUP screen configured");
-//        }
     }
-
-//    private function loadPopup(popup:ScreenModel, data:Object):void {
-//        popup.addEventListener(EventsNavigation.CLOSE_POPUP, onClosePopup);
-//        if (popup && !popup.loaded) {
-//            popup.data = data;
-//            this.addChild(popup);
-//            popup.loaded = true;
-//
-//        } else if (popup.loaded) {
-//            popup.data = data;
-//            popup.enable();
-//        }
-//        _activePopupId = popup.id;
-//        this.setChildIndex(popup, this.numChildren - 1);
-//    }
 
     //Event handlers
     private function showNextScreen(e:EventsNavigation):void {
         var prevId:String = e.target.id;
-        showScreen(e.target.nextScreenId, prevId);
+        showScreen(e.target.nextScreenId, prevId, e.target.data);
     }
 
     private function showPrevScreen(e:EventsNavigation):void {
-        showScreen(e.target.prevScreenId);
+        showScreen(e.target.prevScreenId, e.target.data);
     }
 
     private function onClosePopup(e:EventsNavigation = null):void {

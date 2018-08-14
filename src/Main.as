@@ -1,6 +1,10 @@
 package {
 
+import assets.EmbedImages;
+
 import components.screenNavigator.ScreenNavigator;
+
+import controllers.QuizController;
 
 import data.OptusData;
 
@@ -11,8 +15,9 @@ import flash.display.StageScaleMode;
 import flash.events.Event;
 
 import screens.FormScreen;
+import screens.QuestionSceen;
 
-//[SWF(frameRate="60", backgroundColor="0x000000")]
+[SWF(frameRate="60", backgroundColor="0x000000")]
 
 public class Main extends Sprite {
 
@@ -21,16 +26,17 @@ public class Main extends Sprite {
     }
 
     private function checkTabletId():void {
-//        Service.localDB().addEventListener(EventsWinston.RESPONSE, onResponse);
-//        Service.localDB().addEventListener(EventsWinston.ERROR, onNotFound);
-//        Service.localDB().read(OptusData.CONFIG_TABLE);
+//        OptusService.localDB().addEventListener(EventsWinston.RESPONSE, onResponse);
+//        OptusService.localDB().addEventListener(EventsWinston.ERROR, onNotFound);
+//        OptusService.localDB().read(OptusData.CONFIG_TABLE);
     }
 
-    private function addScreens(isTabletConfig:Boolean):void {
+    private function addScreens():void {
         var screenNavigator:ScreenNavigator;
         screenNavigator = new ScreenNavigator(OptusData.FORM_SCREEN, null, null, OptusData.LEGAL_POPUP_SCREEN);
         screenNavigator.addScreen(FormScreen, OptusData.FORM_SCREEN, OptusData.SUCCESS_SCREEN);
-//        screenNavigator.addScreen(Intro, OptusData.INTRO, OptusData.GAME);
+        screenNavigator.addScreen(QuestionSceen, OptusData.QUESTION_SCREEN);
+
 //        screenNavigator.addScreen(Game, OptusData.GAME, OptusData.SUCCESS);
 //        screenNavigator.addScreen(Fail, OptusData.FAIL, OptusData.HOME);
 //        screenNavigator.addScreen(Success, OptusData.SUCCESS, OptusData.FORM);
@@ -39,10 +45,13 @@ public class Main extends Sprite {
 //        screenNavigator.addScreen(Config, OptusData.CONFIG, OptusData.HOME);
 //        screenNavigator.addScreen(Legal, OptusData.POPUP_LEGAL);
 //        screenNavigator.addScreen(Popup, OptusData.POPUP_GENERIC);
+
+        screenNavigator.setBackground(EmbedImages.BACKGROND);
         this.addChild(screenNavigator);
 
 //        if (isTabletConfig) {
         screenNavigator.showHome();
+//        screenNavigator.showScreen(OptusData.QUESTION_SCREEN);
 //        } else {
 //            screenNavigator.showConfig();
 //        }
@@ -57,7 +66,7 @@ public class Main extends Sprite {
 
         var screenWidth:int = stage.fullScreenWidth;
         var screenHeight:int = stage.fullScreenHeight;
-        trace(screenWidth, screenHeight);
+        trace('screenWidth', screenWidth, 'screenHeight', screenHeight);
 //        init();
     }
 
@@ -66,11 +75,12 @@ public class Main extends Sprite {
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         stageSetUp();
         checkTabletId();
+        addScreens();
     }
 
 //    private function onResponse(e:EventsWinston):void {
-//        Service.localDB().removeEventListener(EventsWinston.RESPONSE, onResponse);
-//        Service.localDB().removeEventListener(EventsWinston.ERROR, onNotFound);
+//        OptusService.localDB().removeEventListener(EventsWinston.RESPONSE, onResponse);
+//        OptusService.localDB().removeEventListener(EventsWinston.ERROR, onNotFound);
 //        var result:SQLResult = e.data as SQLResult;
 //        if (result.data && result.data[0].tabletId) {
 //            OptusData.TABLE_ID = result.data[0].tabletId;
@@ -81,8 +91,8 @@ public class Main extends Sprite {
 //    }
 
 //    private function onNotFound(e:EventsWinston):void {
-//        Service.localDB().removeEventListener(EventsWinston.RESPONSE, onResponse);
-//        Service.localDB().removeEventListener(EventsWinston.ERROR, onNotFound);
+//        OptusService.localDB().removeEventListener(EventsWinston.RESPONSE, onResponse);
+//        OptusService.localDB().removeEventListener(EventsWinston.ERROR, onNotFound);
 //        addScreens(false);
 //    }
 }

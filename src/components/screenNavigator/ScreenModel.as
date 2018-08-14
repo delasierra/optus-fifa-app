@@ -11,12 +11,21 @@ public class ScreenModel extends Sprite {
     private var _id:String;
     private var _index:uint;
     private var _loaded:Boolean;
+//    private var _controller:*;
 
     public function ScreenModel() {
         this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
     }
 
     //getters and setters
+//    public function get controller():* {
+//        return _controller;
+//    }
+//
+//    public function set controller(controller:*):void {
+//        _controller = controller;
+//    }
+
     public function get nextScreenId():String {
         return _nextScreenId;
     }

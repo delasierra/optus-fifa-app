@@ -12,5 +12,11 @@ public class OptusData {
     public static const SUCCESS_SCREEN:String = 'success_screen';
     public static const WINNER_SCREEN:String = 'winner_screen';
 
+//    Quiz data
+    public static const QUIZ_DATA:Array = [
+            QuizLevel1Data.DATA,
+            QuizLevel2Data.DATA,
+            QuizLevel3Data.DATA
+        ]
 }
 }
