@@ -37,7 +37,7 @@ public class Checkbox extends Sprite{
     }
 
     private function addBtn():void {
-        _btn = new Button(45, 45);
+        _btn = new Button(232, 50);
         this.addChild(_btn);
         _btn.addEventListener(MouseEvent.CLICK, onCheck);
     }

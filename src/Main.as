@@ -4,8 +4,6 @@ import assets.EmbedImages;
 
 import components.screenNavigator.ScreenNavigator;
 
-import controllers.QuizController;
-
 import data.OptusData;
 
 import flash.display.Sprite;
@@ -14,8 +12,12 @@ import flash.display.StageDisplayState;
 import flash.display.StageScaleMode;
 import flash.events.Event;
 
+import screens.FinalQuizScreen;
+
 import screens.FormScreen;
+import screens.FailLevelScreen;
 import screens.QuestionSceen;
+import screens.SuccessLevelScreen;
 
 [SWF(frameRate="60", backgroundColor="0x000000")]
 
@@ -34,17 +36,11 @@ public class Main extends Sprite {
     private function addScreens():void {
         var screenNavigator:ScreenNavigator;
         screenNavigator = new ScreenNavigator(OptusData.FORM_SCREEN, null, null, OptusData.LEGAL_POPUP_SCREEN);
-        screenNavigator.addScreen(FormScreen, OptusData.FORM_SCREEN, OptusData.SUCCESS_SCREEN);
+        screenNavigator.addScreen(FormScreen, OptusData.FORM_SCREEN, OptusData.QUESTION_SCREEN);
         screenNavigator.addScreen(QuestionSceen, OptusData.QUESTION_SCREEN);
-
-//        screenNavigator.addScreen(Game, OptusData.GAME, OptusData.SUCCESS);
-//        screenNavigator.addScreen(Fail, OptusData.FAIL, OptusData.HOME);
-//        screenNavigator.addScreen(Success, OptusData.SUCCESS, OptusData.FORM);
-//        screenNavigator.addScreen(FormScreen, OptusData.FORM);
-//        screenNavigator.addScreen(Admin, OptusData.ADMIN);
-//        screenNavigator.addScreen(Config, OptusData.CONFIG, OptusData.HOME);
-//        screenNavigator.addScreen(Legal, OptusData.POPUP_LEGAL);
-//        screenNavigator.addScreen(Popup, OptusData.POPUP_GENERIC);
+        screenNavigator.addScreen(FailLevelScreen, OptusData.FAIL_LEVEL_SCREEN, OptusData.FORM_SCREEN);
+        screenNavigator.addScreen(SuccessLevelScreen, OptusData.SUCCESS_LEVEL_SCREEN, OptusData.QUESTION_SCREEN);
+        screenNavigator.addScreen(FinalQuizScreen, OptusData.FINAL_QUIZ_SCREEN, OptusData.FORM_SCREEN);
 
         screenNavigator.setBackground(EmbedImages.BACKGROND);
         this.addChild(screenNavigator);
@@ -63,10 +59,9 @@ public class Main extends Sprite {
         stage.scaleMode = StageScaleMode.NO_SCALE;
         stage.align = StageAlign.TOP_LEFT;
 
-
-        var screenWidth:int = stage.fullScreenWidth;
-        var screenHeight:int = stage.fullScreenHeight;
-        trace('screenWidth', screenWidth, 'screenHeight', screenHeight);
+//        var screenWidth:int = stage.fullScreenWidth;
+//        var screenHeight:int = stage.fullScreenHeight;
+//        trace('screenWidth', screenWidth, 'screenHeight', screenHeight);
 //        init();
     }
 

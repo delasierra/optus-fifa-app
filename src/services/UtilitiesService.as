@@ -14,5 +14,10 @@ public class UtilitiesService {
         }
         return date + "/" + month + "/" + year;
     }
+
+    public static function getRandomNumber(minNum:Number, maxNum:Number):Number {
+        return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
+
+    }
 }
 }

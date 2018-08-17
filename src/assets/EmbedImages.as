@@ -11,30 +11,43 @@ public class EmbedImages {
 
     //Screens backgrounds
     [Embed(source="../../embed_assets/img/form_screen_bg.png")]
-    public static const FORM:Class;
+    public static const FORM_SCREEN_BG:Class;
 
 //    [Embed(source="../../embed_assets/img/fail_screena.png")]
 //    public static const LEGAL:Class;
 
-    [Embed(source="../../embed_assets/img/question_screen_guide.png")]
-    public static const QUESTION:Class;
+    [Embed(source="../../embed_assets/img/question_screen/question_screen_guide.png")]
+    public static const QUESTION_SCREEN_BG:Class;
 
     [Embed(source="../../embed_assets/img/fail_screen.png")]
-    public static const FAIL:Class;
+    public static const FAIL_SCREEN_BG:Class;
 
     [Embed(source="../../embed_assets/img/success_screen.png")]
-    public static const SUCCESS:Class;
+    public static const SUCCESS_SCREEN_BG:Class;
 
     [Embed(source="../../embed_assets/img/winner_screen.png")]
-    public static const WINNER:Class;
+    public static const FINAL_QUIZ_SCREEN_BG:Class;
 
-//    Game backgrounds
-//    [Embed(source="../../embedAssets/img/gameBg_A.png")]
-//    public static const GAMEBK_1:Class;
+//    Question Screen
+    [Embed(source="../../embed_assets/img/question_screen/question_screen_guide.png")]
+    public static const QUESTION_GUIDE:Class;
+
+    [Embed(source="../../embed_assets/img/question_screen/question_check_icon.png")]
+    public static const QUESTION_CHECK_ICON:Class;
+
+    [Embed(source="../../embed_assets/img/question_screen/question_unchecked_bg.png")]
+    public static const QUESTION_UNCHECKED_BG:Class;
+
+    [Embed(source="../../embed_assets/img/question_screen/question_checked_bg.png")]
+    public static const QUESTION_CHECKED_BG:Class;
+
+    [Embed(source="../../embed_assets/img/question_screen/question_checked_full.png")]
+    public static const QUESTION_CHECKED_FULL:Class;
+
 
 
     //UI elements
-    [Embed(source="../../embed_assets/img/check.png")]
+    [Embed(source="../../embed_assets/img/form_check.png")]
     public static const CHECK:Class;
 }
 }

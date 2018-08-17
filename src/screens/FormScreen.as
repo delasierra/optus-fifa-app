@@ -2,8 +2,6 @@ package screens {
 import assets.EmbedFonts;
 import assets.EmbedImages;
 
-import com.greensock.TweenMax;
-
 import components.screenNavigator.EventsNavigation;
 import components.screenNavigator.ScreenModel;
 import components.ui.Button;
@@ -13,8 +11,6 @@ import data.OptusData;
 
 import flash.display.Bitmap;
 
-import flash.events.Event;
-
 import flash.events.KeyboardEvent;
 
 import flash.events.MouseEvent;
@@ -23,16 +19,19 @@ import flash.text.TextField;
 import flash.text.TextFieldType;
 import flash.text.TextFormat;
 
+import services.OptusService;
+
 import services.UtilitiesService;
 
 public class FormScreen extends ScreenModel {
 
     private var _submitBtn:Button;
-//    private var _legalBtn:Button;
-    private var _homeBtn:Button;
+    private var _termsBtn:Button;
     private var _inputs:Array = [];
     private var _legalCheckbox:Checkbox;
+    private var _promoCheckbox:Checkbox;
     private var _panLimit:Number;
+
 
     public function FormScreen() {
         super();
@@ -44,14 +43,15 @@ public class FormScreen extends ScreenModel {
         addBtns();
         addInputs();
         addLegalCheckbox();
-        focusNextInput();
+        addPromoCheckbox();
+//        focusNextInput();
         enable();
     }
 
     override public function enable():void {
-        _submitBtn.addEventListener(MouseEvent.CLICK, gotoLegal);
-//        _legalBtn.addEventListener(MouseEvent.CLICK, gotoLegal);
-//        _homeBtn.addEventListener(MouseEvent.CLICK, goHome);
+        _submitBtn.addEventListener(MouseEvent.CLICK, submitForm);
+        _termsBtn.addEventListener(MouseEvent.CLICK, showTermsText);
+
         this.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, panOnSofkeyboardShows);
         this.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, panOnSofkeyboardHides);
         this.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
@@ -61,9 +61,9 @@ public class FormScreen extends ScreenModel {
     }
 
     override public function disable():void {
-        _submitBtn.removeEventListener(MouseEvent.CLICK, gotoLegal);
-//        _legalBtn.removeEventListener(MouseEvent.CLICK, gotoLegal);
-//        _homeBtn.removeEventListener(MouseEvent.CLICK, goHome);
+        _submitBtn.removeEventListener(MouseEvent.CLICK, submitForm);
+        _termsBtn.removeEventListener(MouseEvent.CLICK, showTermsText);
+
         this.removeEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, panOnSofkeyboardShows);
         this.removeEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, panOnSofkeyboardHides);
         this.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
@@ -76,61 +76,90 @@ public class FormScreen extends ScreenModel {
 //            if (isFormDataOk()) {
 //            _signatureField.addEventListener(Event.COMPLETE, recordDaraOnLocalDb);
 //            _signatureField.makeSignatureImg();
-        }
 //        }
+        }
     }
 
     //UI
     private function addBk():void {
-        var bk:Bitmap = new EmbedImages.FORM() as Bitmap;
+        var bk:Bitmap = new EmbedImages.FORM_SCREEN_BG() as Bitmap;
         addChild(bk);
     }
 
     private function addBtns():void {
-        _submitBtn = new Button(374, 47);
-        _submitBtn.x = 454;
-        _submitBtn.y = 654;
-        _submitBtn.setLabel("Submit");
+        _submitBtn = new Button(776, 96);
+        _submitBtn.x = 633;
+        _submitBtn.y = 1119;
+        _submitBtn.setLabel("BEGIN");
         this.addChild(_submitBtn);
 
-        _homeBtn = new Button(136, 61);
-        _homeBtn.x = 150;
-        _homeBtn.y = 660;
-        _homeBtn.setLabel("home");
-        this.addChild(_homeBtn);
+        _termsBtn = new Button(351, 34);
+        _termsBtn.x = 910;
+        _termsBtn.y = 918;
+        _termsBtn.setLabel("terms");
+        this.addChild(_termsBtn);
     }
 
     private function addInputs():void {
-        var nameTf:TextField = getInput(647, 32, 453, 195);
-        this.addChild(nameTf);
-        _inputs.push(nameTf);
+        var formElementWidth:Number = 776 - 40;
+        var formElementHeight:Number = 50;
+        var x:Number = 633 + 20;
+        var adjustY:Number = 31;
 
-        var dobTf:TextField = getInput(230, 32, 461, 257);
-        this.addChild(dobTf);
-        _inputs.push(dobTf);
+        var nameInput:TextField = getInput(
+                formElementWidth,
+                formElementHeight,
+                x,
+                491 + adjustY);
+        this.addChild(nameInput);
+        _inputs.push(nameInput);
 
-        var dniTf:TextField = getInput(286, 32, 814, 257);
-        this.addChild(dniTf);
-        _inputs.push(dniTf);
+        var emailInput:TextField = getInput(
+                formElementWidth,
+                formElementHeight,
+                x,
+                582 + adjustY);
+        this.addChild(emailInput);
+        _inputs.push(emailInput);
 
-        var phoneTf:TextField = getInput(249, 32, 489, 316);
-        this.addChild(phoneTf);
-        _inputs.push(phoneTf);
+        var dobInput:TextField = getInput(
+                formElementWidth,
+                formElementHeight,
+                x,
+                674 + adjustY);
+        this.addChild(dobInput);
+        _inputs.push(dobInput);
+
+        var mobileInput:TextField = getInput(
+                formElementWidth,
+                formElementHeight,
+                x,
+                766 + adjustY);
+        this.addChild(mobileInput);
+        _inputs.push(mobileInput);
     }
 
     private function addLegalCheckbox():void {
         _legalCheckbox = new Checkbox();
-        _legalCheckbox.x = 878;
-        _legalCheckbox.y = 566;
+        _legalCheckbox.x = 631;
+        _legalCheckbox.y = 917.5;
         this.addChild(_legalCheckbox);
+    }
+
+    private function addPromoCheckbox():void {
+        _promoCheckbox = new Checkbox();
+        _promoCheckbox.x = 631;
+        _promoCheckbox.y = 994;
+        this.addChild(_promoCheckbox);
     }
 
     //inputs focus
     private function focusNextInput():void {
+//        trace(focusNextInput, _inputs)
         for (var i:uint = 0; i < _inputs.length; i++) {
             if (_inputs[i].text == "") {
-                _inputs[i].requestSoftKeyboard();
                 stage.focus = _inputs[i];
+                _inputs[i].requestSoftKeyboard();
                 break;
             }
         }
@@ -141,49 +170,48 @@ public class FormScreen extends ScreenModel {
         var formData:Object;
         formData = {
             name: _inputs[0].text,
-            dob: _inputs[1].text,
-            dni: _inputs[2].text,
-            phone: _inputs[3].text,
-            email: 'harcoded',
-            date: UtilitiesService.getDate(),
-            promo: _legalCheckbox.isChecked ? 1 : 0,
-            terms: 'hardcoded'
+            email: _inputs[1].text,
+            dob: _inputs[2].text,
+            mobile: _inputs[3].text,
+            promo: _promoCheckbox.isChecked ? 1 : 0,
+            terms: _legalCheckbox.isChecked ? 1 : 0,
+            date: UtilitiesService.getDate()
         };
         return formData;
     }
 
     private function getInput(width:uint, height:uint, x:uint, y:uint):TextField {
         var inputTextFormat:TextFormat = new TextFormat();
-        inputTextFormat.size = 28;
-        inputTextFormat.font = EmbedFonts.MACPRO_HEAVY;
+        inputTextFormat.size = 32;
+        inputTextFormat.font = EmbedFonts.MACPRO_REGULAR;
+        inputTextFormat.color = "0x414141";
 
         var tfInput:TextField = new TextField();
         tfInput.type = TextFieldType.INPUT;
+//        tfInput.embedFonts = true;
         tfInput.defaultTextFormat = inputTextFormat;
         tfInput.multiline = false;
         tfInput.width = width;
         tfInput.height = height + 2;
         tfInput.x = x;
         tfInput.y = y;
+//        tfInput.text = 'test text';
+//        tfInput.y += Math.round((tfInput.height - tfInput.textHeight) / 2);
 //        tfInput.border = 1;
         return tfInput;
     }
 
     //inputs checkers
     private function isFormDataOk():Boolean {
+//        TODO delete the next line (is only for debug)
+//        return true;
         for (var i:uint = 0; i < _inputs.length; i++) {
-            if (_inputs[i].text == "" || _inputs[i].text == undefined) {
+            if (_inputs[i].text == "" || _inputs[i].text == undefined || !_legalCheckbox.isChecked) {
 //                dispatchEvent(new EventsNavigation(EventsNavigation.POPUP, {msg: WinstonData.FORM_DATA_MISSING, btn: true}));
                 trace('form is incomplete');
                 return false;
             }
         }
-
-//        if (!_signatureField.isSigned) {
-//            dispatchEvent(new EventsNavigation(EventsNavigation.POPUP, {msg: WinstonData.FORM_SIGNATURE_MISSING, btn: true}));
-//            return false;
-//        }
-
         return true;
     }
 
@@ -193,26 +221,20 @@ public class FormScreen extends ScreenModel {
         }
 //        _signatureField.reset();
         _legalCheckbox.uncheck();
+        _promoCheckbox.uncheck();
     }
 
     //event handlers
     //panning app with softKeyboard
     private function panOnSofkeyboardShows(e:SoftKeyboardEvent = null):void {
-        if (this.y + 20 > _panLimit) {
-            TweenMax.to(this, .2, {y: (stage.focus.y) * -1 + 20});
-        }
+//        if (this.y + 20 > _panLimit) {
+//            TweenMax.to(this, .2, {y: (stage.focus.y) * -1 + 20});
+//        }
     }
 
     private function panOnSofkeyboardHides(e:SoftKeyboardEvent = null):void {
-        TweenMax.to(this, .2, {y: 0});
+//        TweenMax.to(this, .2, {y: 0});
     }
-
-//    private function onDataSubmited(e:EventsWinston):void {
-//        OptusService.localDB().removeEventListener(EventsWinston.RESPONSE, onDataSubmited);
-//        OptusService.localDB().removeEventListener(EventsWinston.ERROR, onDataSubmited);
-//        resetForm();
-//        dispatchEvent(new EventsNavigation(EventsNavigation.HOME));
-//    }
 
     private function onKeyDown(e:KeyboardEvent):void {
 //        trace("e.charCode", e.charCode);
@@ -227,17 +249,21 @@ public class FormScreen extends ScreenModel {
 //        dispatchEvent(new EventsNavigation(EventsNavigation.POPUP, {msg: WinstonData.ERROR, btn: true}));
 //    }
 
-    private function gotoLegal(e:MouseEvent):void {
+    private function showTermsText(e:MouseEvent):void {
 //        _submitBtn.removeEventListener(MouseEvent.CLICK, gotoLegal);
-        if (isFormDataOk()) {
-            dispatchEvent(new EventsNavigation(EventsNavigation.POPUP, {msg: "", popupId: OptusData.LEGAL_POPUP_SCREEN}));
-        }
-//        dispatchEvent(new EventsNavigation(EventsNavigation.NEXT_SCREEN));
+
+        dispatchEvent(new EventsNavigation(EventsNavigation.POPUP, {
+            msg: "",
+            popupId: OptusData.LEGAL_POPUP_SCREEN
+        }));
     }
 
-//    private function goHome(e:MouseEvent):void {
-//        dispatchEvent(new EventsNavigation(EventsNavigation.HOME));
-//        resetForm();
-//    }
+    private function submitForm(e:MouseEvent):void {
+        if (isFormDataOk()) {
+            OptusService.startQuiz(getFormData());
+            dispatchEvent(new EventsNavigation(EventsNavigation.NEXT_SCREEN));
+        }
+    }
+
 }
 }

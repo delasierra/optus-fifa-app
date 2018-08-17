@@ -11,7 +11,6 @@ public class ScreenModel extends Sprite {
     private var _id:String;
     private var _index:uint;
     private var _loaded:Boolean;
-//    private var _controller:*;
 
     public function ScreenModel() {
         this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
@@ -80,11 +79,11 @@ public class ScreenModel extends Sprite {
 
     //public functions
     public function enable():void {
-
+        this.visible = true;
     }
 
     public function disable():void {
-
+        this.visible = false;
     }
 
     public function popUpClosed(popupId:String):void {
