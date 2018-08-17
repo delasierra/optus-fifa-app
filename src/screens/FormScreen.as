@@ -96,7 +96,7 @@ public class FormScreen extends ScreenModel {
         _termsBtn = new Button(351, 34);
         _termsBtn.x = 910;
         _termsBtn.y = 918;
-        _termsBtn.setLabel("terms");
+        _termsBtn.setLabel("TERMS");
         this.addChild(_termsBtn);
     }
 
@@ -250,13 +250,18 @@ public class FormScreen extends ScreenModel {
 //    }
 
     private function showTermsText(e:MouseEvent):void {
-//        _submitBtn.removeEventListener(MouseEvent.CLICK, gotoLegal);
+        _submitBtn.removeEventListener(MouseEvent.CLICK, showTermsText);
 
         dispatchEvent(new EventsNavigation(EventsNavigation.POPUP, {
-            msg: "",
+            msg: OptusData.LEGAL_TEXT,
             popupId: OptusData.LEGAL_POPUP_SCREEN
         }));
     }
+
+//    private function gotoLegal():void {
+//        trace('OptusData.LEGAL_TEXT', OptusData.LEGAL_TEXT);
+//        dispatchEvent(new EventsNavigation(EventsNavigation.POPUP, {msg: OptusData.LEGAL_TEXT, popupId: OptusData.LEGAL_POPUP_SCREEN}));
+//    }
 
     private function submitForm(e:MouseEvent):void {
         if (isFormDataOk()) {

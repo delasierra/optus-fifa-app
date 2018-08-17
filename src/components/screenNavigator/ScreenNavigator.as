@@ -87,6 +87,7 @@ public class ScreenNavigator extends Sprite {
 
     public function showHome(e:EventsNavigation = null):void {
         if (_homeScreenId) {
+            onClosePopup();
             showScreen(_homeScreenId);
 //            onClosePopup();
         } else {

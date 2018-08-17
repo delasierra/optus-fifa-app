@@ -28,6 +28,9 @@ public class EmbedImages {
     [Embed(source="../../embed_assets/img/winner_screen.png")]
     public static const FINAL_QUIZ_SCREEN_BG:Class;
 
+    [Embed(source="../../embed_assets/img/popup_bg.png")]
+    public static const POPUP_BG:Class;
+
 //    Question Screen
     [Embed(source="../../embed_assets/img/question_screen/question_screen_guide.png")]
     public static const QUESTION_GUIDE:Class;
@@ -49,5 +52,8 @@ public class EmbedImages {
     //UI elements
     [Embed(source="../../embed_assets/img/form_check.png")]
     public static const CHECK:Class;
+
+    [Embed(source="../../embed_assets/img/close_btn.png")]
+    public static const CLOSE_BTN:Class;
 }
 }

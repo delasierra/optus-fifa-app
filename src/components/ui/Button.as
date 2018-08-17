@@ -56,7 +56,7 @@ package components.ui {
 
 
             this.addChild(_tf);
-            this.alpha = 0;
+//            this.alpha = 0;
         }
 
         public function setLabel(label:String):void {
