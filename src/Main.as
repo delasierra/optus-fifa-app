@@ -95,7 +95,9 @@ public class Main extends Sprite {
     }
 
     private function onClickHomeBtn(e:MouseEvent):void {
-        if (e.currentTarget.getCurrentScreenId() != OptusData.FORM_SCREEN) {
+
+//        if (e.currentTarget.getCurrentScreenId() != OptusData.FORM_SCREEN) {
+        if (_screenNavigator.getCurrentScreenId() != OptusData.FORM_SCREEN) {
             dispatchEvent(new ScreenNavigatorEvent(ScreenNavigatorEvent.CLOSE_POPUP));
             OptusService.quitQuiz();
             _screenNavigator.showHome();

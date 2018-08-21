@@ -68,7 +68,7 @@ public class QuizLevel1Data {
             question: 'Which club has won the most La Liga trophies?',
             answers: [
                 {text: 'Real Madrid', value: 'true'},
-                {text: 'Atlético Madrid', value: 'false'},
+                {text: 'Atletico Madrid', value: 'false'},
                 {text: 'Valencia', value: 'false'},
                 {text: 'Barcelona', value: 'false'}
             ]
@@ -155,16 +155,16 @@ public class QuizLevel1Data {
             ]
         },
         {
-            question: 'Which team the 2017/18 La Liga?',
+            question: 'Which team won the 2017/18 La Liga?',
             answers: [
                 {text: 'Barcelona', value: 'true'},
-                {text: 'Atlético Madrid', value: 'false'},
+                {text: 'Atletico Madrid', value: 'false'},
                 {text: 'Sevilla', value: 'false'},
                 {text: 'Valencia', value: 'false'}
             ]
         },
         {
-            question: 'Which team the 2017/18 Serie A?',
+            question: 'Which team won the 2017/18 Serie A?',
             answers: [
                 {text: 'Juventus', value: 'true'},
                 {text: 'Roma', value: 'false'},

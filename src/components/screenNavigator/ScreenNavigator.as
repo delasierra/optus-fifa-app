@@ -72,7 +72,7 @@ public class ScreenNavigator extends Sprite {
 //    Action
     public function showScreen(id:String, prevId:String = null, data:Object = null):void {
         //remove current screen
-        trace('[ScreenNavigator] showScreen ', id, ' - ', prevId, ' - ', data);
+//        trace('[ScreenNavigator] showScreen ', id, ' - ', prevId, ' - ', data);
         removeScreen(_activeScreenId);
         //show new screen
         var newScreen:ScreenModel = getScreen(id);

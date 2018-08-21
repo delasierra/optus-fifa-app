@@ -30,7 +30,7 @@ package components.ui {
             this.buttonMode = true;
             this.mouseChildren = false;
             this.useHandCursor = true;
-            trace('_texture', _texture);
+
             if(!_texture){
                 _bg = new Sprite();
                 _bg.graphics.beginFill(0xababab);
@@ -39,7 +39,7 @@ package components.ui {
                 _bg.alpha = 0;
                 this.addChild(_bg);
             }else{
-                trace('----- texture');
+
                 this.addChild(_texture);
             }
 
