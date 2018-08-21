@@ -1,6 +1,5 @@
 package data {
 public class QuizLevel1Data {
-//    TODO add real FINAL data
     public static const DATA:Array = [
         {
             question: 'Who won the 2018 World Cup?',
@@ -12,7 +11,7 @@ public class QuizLevel1Data {
             ]
         },
         {
-            question: 'Who won the 2018 World Cup Golden Boot',
+            question: 'Who won the 2018 World Cup Golden Boot?',
             answers: [
                 {text: 'Harry Kane', value: 'true'},
                 {text: 'James Rodríguez', value: 'false'},

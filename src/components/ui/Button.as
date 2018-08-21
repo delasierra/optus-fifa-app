@@ -30,14 +30,16 @@ package components.ui {
             this.buttonMode = true;
             this.mouseChildren = false;
             this.useHandCursor = true;
-
+            trace('_texture', _texture);
             if(!_texture){
                 _bg = new Sprite();
                 _bg.graphics.beginFill(0xababab);
                 _bg.graphics.drawRect(0, 0, width, height);
                 _bg.graphics.endFill();
+                _bg.alpha = 0;
                 this.addChild(_bg);
             }else{
+                trace('----- texture');
                 this.addChild(_texture);
             }
 
@@ -46,7 +48,6 @@ package components.ui {
             _tf = new TextField();
 
             var format:TextFormat = _tf.defaultTextFormat;
-//        format.font = "Arial";
             format.size = 14;
             format.align = TextFormatAlign.CENTER;
 
@@ -54,9 +55,7 @@ package components.ui {
             _tf.width = width;
             _tf.defaultTextFormat = format;
 
-
             this.addChild(_tf);
-//            this.alpha = 0;
         }
 
         public function setLabel(label:String):void {

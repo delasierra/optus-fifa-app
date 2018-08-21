@@ -19,6 +19,13 @@ public class QuizController extends EventDispatcher {
         super(target);
     }
 
+    public function get quizQuestionCurrent():uint {
+        return (_quesionsTotalPerLevel * _levelCurrent) + _questionCurrent + 1;
+    }
+
+    public function get quizTotalQuestions():uint {
+        return _quesionsTotalPerLevel * _levelsTotal;
+    }
 
     public function start():void {
         _userAnswers = [];

@@ -4,20 +4,10 @@ import controllers.QuizController;
 
 import data.OptusData;
 
-import services.ApiCallsService;
-
 public class OptusService {
 
     private static var _quizController:QuizController;
     private static var _dataController:DataController;
-
-
-//    USER DATA
-//    private static function saveUserData(userData:Object):void {
-//        trace('[OptusService] User data:', userData.name, userData.email, userData.dob, userData.mobile);
-//        _userdata = userData;
-//    }
-
 
 //    QUIZ
     public static function startQuiz(userData:Object):QuizController {
@@ -25,18 +15,16 @@ public class OptusService {
             _quizController = new QuizController(OptusData.QUIZ_DATA)
         }
 
-        if(!_dataController){
+        if (!_dataController) {
             _dataController = new DataController();
         }
         _dataController.saveUserData(userData);
-        _dataController.pushDataToServer(); //TODO this line only for debug
         _quizController.start();
         return _quizController;
     }
 
     public static function quitQuiz():void {
-//        TODO send user data on DB
-//        TODO got back to form page (intro)
+        _dataController.addUserQuitted();
     }
 
 
@@ -51,18 +39,27 @@ public class OptusService {
 
 
     public static function getNextQuizStep():String {
-        if (_quizController.isQuizCompleted()) {
-            //        TODO save user data on DB
-            return OptusData.FINAL_QUIZ_SCREEN;
-        }
 
         if (_quizController.isLevelCompleted()) {
+
+            if (_quizController.isQuizCompleted()) {
+
+                _dataController.addLevelScored();
+                _dataController.addQuizCompleted();
+                _dataController.pushDataToServer();
+                return OptusData.FINAL_QUIZ_SCREEN;
+
+            }
+
             if (_quizController.isUserWinner()) {
+                _dataController.addLevelScored();
                 return OptusData.SUCCESS_LEVEL_SCREEN;
+
             } else {
-                //        TODO save user data on DB
+                _dataController.pushDataToServer();
                 return OptusData.FAIL_LEVEL_SCREEN;
             }
+
         }
         return OptusData.QUESTION_SCREEN;
     }
@@ -72,14 +69,11 @@ public class OptusService {
         return _quizController.getNumberCorrectAnswers();
     }
 
-
-    public static function getLevelResults(levelId:uint):void {
-
-    }
-
-
-    public static function getQuizResults():void {
-
+    public static function getCurrentProgress():Object {
+        return {
+            currentQuestion: _quizController.quizQuestionCurrent,
+            totalQuestions: _quizController.quizTotalQuestions
+        }
     }
 }
 }

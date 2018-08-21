@@ -6,15 +6,19 @@ package assets {
 public class EmbedImages {
 
 //    General
+
+//    Screens backgrounds
+
     [Embed(source="../../embed_assets/img/app_bg.png")]
     public static const BACKGROND:Class;
 
-    //Screens backgrounds
+//    UI
+    [Embed(source="../../embed_assets/img/optuslogo.png")]
+    public static const OPTUS_LOGO:Class;
+
+//    Screen bg
     [Embed(source="../../embed_assets/img/form_screen_bg.png")]
     public static const FORM_SCREEN_BG:Class;
-
-//    [Embed(source="../../embed_assets/img/fail_screena.png")]
-//    public static const LEGAL:Class;
 
     [Embed(source="../../embed_assets/img/question_screen/question_screen_guide.png")]
     public static const QUESTION_SCREEN_BG:Class;
@@ -34,6 +38,9 @@ public class EmbedImages {
 //    Question Screen
     [Embed(source="../../embed_assets/img/question_screen/question_screen_guide.png")]
     public static const QUESTION_GUIDE:Class;
+
+    [Embed(source="../../embed_assets/img/question_screen/question_bg.png")]
+    public static const QUESTION_BG:Class;
 
     [Embed(source="../../embed_assets/img/question_screen/question_check_icon.png")]
     public static const QUESTION_CHECK_ICON:Class;
