@@ -3,7 +3,6 @@ import assets.EmbedFonts;
 import assets.EmbedImages;
 
 import com.greensock.TweenMax;
-import com.greensock.easing.Back;
 import com.greensock.easing.Power1;
 
 import components.TextFieldPlaceholder;
@@ -20,7 +19,6 @@ import flash.display.Bitmap;
 import flash.events.KeyboardEvent;
 
 import flash.events.MouseEvent;
-import flash.events.SoftKeyboardEvent;
 import flash.text.TextField;
 import flash.text.TextFieldType;
 import flash.text.TextFormat;
@@ -53,22 +51,15 @@ public class FormScreen extends ScreenModel {
         addInputs();
         addLegalCheckbox();
         addPromoCheckbox();
-//        focusNextInput();
         enable();
     }
 
     override public function enable():void {
         _submitBtn.addEventListener(MouseEvent.CLICK, submitForm);
         _termsBtn.addEventListener(MouseEvent.CLICK, showTermsText);
-
-        this.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, panOnSofkeyboardShows);
-        this.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, panOnSofkeyboardHides);
         this.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 
         TweenMax.to(this, .5, {alpha: 1, ease: Power1.easeIn});
-
-//        addBakground();
-//        addFormUiImage();
         resetForm();
         this.y = 0;
         this.visible = true;
@@ -77,22 +68,10 @@ public class FormScreen extends ScreenModel {
     override public function disable():void {
         _submitBtn.removeEventListener(MouseEvent.CLICK, submitForm);
         _termsBtn.removeEventListener(MouseEvent.CLICK, showTermsText);
-
-        this.removeEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, panOnSofkeyboardShows);
-        this.removeEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, panOnSofkeyboardHides);
         this.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 
         this.y = 0;
         this.visible = false;
-    }
-
-    override public function popUpClosed(popupId:String):void {
-        if (popupId == OptusData.LEGAL_POPUP_SCREEN) {
-//            if (isFormDataOk()) {
-//            _signatureField.addEventListener(Event.COMPLETE, recordDaraOnLocalDb);
-//            _signatureField.makeSignatureImg();
-//        }
-        }
     }
 
     //UI
@@ -101,11 +80,6 @@ public class FormScreen extends ScreenModel {
             _formUiImage = new EmbedImages.FORM_SCREEN_BG() as Bitmap;
             addChild(_formUiImage);
         }
-//        _formUiImage.alpha = 0;
-//        TweenMax.to(_formUiImage, 1, {alpha: 1});
-//        if (this.id != this.prevScreenId) {
-//            TweenMax.from(_formUiImage, .5, {x: _formUiImage.x + 200, ease: Back.easeIn.config(1.3)});
-//        }
     }
 
     private function addBakground():void {
@@ -113,30 +87,18 @@ public class FormScreen extends ScreenModel {
             _background = new EmbedImages.BACKGROND() as Bitmap;
             addChild(_background);
         }
-
-//        _background.alpha = 0;
-//        TweenMax.to(_background, 1, {alpha: 1});
-//        if (this.id != this.prevScreenId) {
-//            TweenMax.from(_background, .5, {x: _background.x + 100, alpha:0, ease: Power1.easeIn});
-//        }
     }
 
-//    private function addBk():void {
-//        var bk:Bitmap = new EmbedImages.FORM_SCREEN_BG() as Bitmap;
-//        addChild(bk);
-//    }
 
     private function addBtns():void {
         _submitBtn = new Button(776, 96);
         _submitBtn.x = 633;
         _submitBtn.y = 1119;
-        //_submitBtn.setLabel("BEGIN");
         this.addChild(_submitBtn);
 
         _termsBtn = new Button(351, 34);
         _termsBtn.x = 910;
         _termsBtn.y = 918;
-        //_termsBtn.setLabel("TERMS");
         this.addChild(_termsBtn);
     }
 
@@ -242,12 +204,8 @@ public class FormScreen extends ScreenModel {
 
     //inputs checkers
     private function isFormDataOk():Boolean {
-//        TODO delete the next line (is only for debug)
-//        return true;
         for (var i:uint = 0; i < _inputs.length; i++) {
             if (_inputs[i].text == "" || _inputs[i].text == undefined || !_legalCheckbox.isChecked) {
-//                dispatchEvent(new ScreenNavigatorEvent(ScreenNavigatorEvent.POPUP, {msg: WinstonData.FORM_DATA_MISSING, btn: true}));
-//                trace('form is incomplete');
                 return false;
             }
         }
@@ -264,11 +222,6 @@ public class FormScreen extends ScreenModel {
     }
 
     //event handlers
-    //custom panning app with softKeyboard
-    private function panOnSofkeyboardHides(e:SoftKeyboardEvent = null):void {
-//        TweenMax.to(this, .2, {y: 0});
-    }
-
     private function onKeyDown(e:KeyboardEvent):void {
         if (e.charCode == 13 || e.charCode == 9) {
             focusNextInput();
@@ -291,31 +244,12 @@ public class FormScreen extends ScreenModel {
                 onComplete: showNextStep,
                 ease: Power1.easeOut
             });
-
-//            TweenMax.to(_formUiImage, .5, {
-//                x: _formUiImage.x - 200,
-//                alpha: 0,
-//                ease: Power1.easeOut
-//            });
-//
-//            TweenMax.to(_background, .5, {
-//                alpha: 0,
-//                onComplete: showNextStep,
-//                ease: Power1.easeOut
-//            });
         }
     }
 
     private function showNextStep():void {
-        trace('showNextStep');
         OptusService.startQuiz(getFormData());
         dispatchEvent(new ScreenNavigatorEvent(ScreenNavigatorEvent.NEXT_SCREEN));
-    }
-
-    private function panOnSofkeyboardShows(e:SoftKeyboardEvent = null):void {
-//        if (this.y + 20 > _panLimit) {
-//            TweenMax.to(this, .2, {y: (stage.focus.y) * -1 + 20});
-//        }
     }
 }
 }

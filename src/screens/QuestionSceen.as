@@ -35,7 +35,6 @@ public class QuestionSceen extends ScreenModel {
     }
 
     override protected function init():void {
-//        addQuestionField();
         this.enable();
     }
 
@@ -45,7 +44,6 @@ public class QuestionSceen extends ScreenModel {
     }
 
     override public function disable():void {
-//        resetScreen();
         this.visible = false;
     }
 
@@ -87,12 +85,9 @@ public class QuestionSceen extends ScreenModel {
         if (!_answerBtns) {
             var answerX:Number = 0; //800;
             var shuffledAnswers:Array = UtilitiesService.randomShuffleArray(_questionData.answers);
-//            trace('[addAnswerBtns] _questionData.answers: ', _questionData.answers);
-//            trace('[addAnswerBtns] shuffledAnswers: ', shuffledAnswers);
 
             _aswerBtnsContainer = new Sprite();
             _answerBtns = [];
-
 
             for (var i:uint = 0; i < shuffledAnswers.length; i++) {
                 var uncheckBg:Bitmap = new EmbedImages.QUESTION_UNCHECKED_BG() as Bitmap;
@@ -108,7 +103,6 @@ public class QuestionSceen extends ScreenModel {
                 answer.enable();
 
 //                Animation
-//                TweenMax.from(answer, .5 + ((i + 1) / 10), {alpha: 0, delay: .2});
                 TweenMax.from(answer, .5 + ((i + 1) / 10), {
                     alpha: 0,
                     x: answer.x + 100,
@@ -122,42 +116,6 @@ public class QuestionSceen extends ScreenModel {
             this.addChild(_aswerBtnsContainer);
         }
     }
-
-//    private function addAnswerBtns():void {
-//        if (!_answerBtns) {
-//            var answerX:Number = 0; //800;
-//
-//            _aswerBtnsContainer = new Sprite();
-//            _answerBtns = [];
-//
-//
-//            for (var i:uint = 0; i < _questionData.answers.length; i++) {
-//                var uncheckBg:Bitmap = new EmbedImages.QUESTION_UNCHECKED_BG() as Bitmap;
-//                var checkedBg:Bitmap = new EmbedImages.QUESTION_CHECKED_FULL() as Bitmap;
-//                var answer:CheckboxTextButton = new CheckboxTextButton(uncheckBg, checkedBg);
-//                answer.addEventListener(MouseEvent.CLICK, onUserAnswer);
-//                answer.font = EmbedFonts.MACPRO_MEDIUM;
-//                answer.fontSize = 44;
-//                answer.value = _questionData.answers[i].value;
-//                answer.x = answerX;
-//                answer.y = 930 + (105 * i);
-//                answer.setLabel(_questionData.answers[i].text, 100, 0);
-//                answer.enable();
-//
-////                Animation
-//                TweenMax.from(answer, .5 + ((i + 1) / 10), {alpha: 0, delay: .2});
-//                TweenMax.from(answer, .5 + ((i + 1) / 10), {
-//                    x: answer.x + 100,
-//                    ease: Back.easeOut.config(1.7),
-//                    delay: .2
-//                });
-//
-//                _aswerBtnsContainer.addChild(answer);
-//                _answerBtns.push(answer);
-//            }
-//            this.addChild(_aswerBtnsContainer);
-//        }
-//    }
 
     private function disableAnswerBtns():void {
         for (var i:uint = 0; i < _answerBtns.length; i++) {
@@ -212,13 +170,14 @@ public class QuestionSceen extends ScreenModel {
     }
 
     private function onCheckDelay(te:TimerEvent):void {
+
+        this.nextScreenId = OptusService.getNextQuizStep();
+
         var timer:Timer = te.currentTarget as Timer;
         timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onCheckDelay);
         timer.stop();
+
 //        Animation
-//        trace('ID', this.id, ' prevScreen', this.prevScreenId, ' conditional ', this.id == this.prevScreenId);
-//        trace(OptusService.getNextQuizStep(),  this.id, OptusService.getNextQuizStep() != this.id);
-        this.nextScreenId = OptusService.getNextQuizStep();
         if (this.nextScreenId != this.id) {
             TweenMax.to(_background, .5, {alpha: 0});
         }
@@ -229,7 +188,6 @@ public class QuestionSceen extends ScreenModel {
     }
 
     private function showNextStep():void {
-//        this.nextScreenId = OptusService.getNextQuizStep();
         dispatchEvent(new ScreenNavigatorEvent(ScreenNavigatorEvent.NEXT_SCREEN));
     }
 }

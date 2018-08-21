@@ -29,11 +29,10 @@ public class UtilitiesService {
             randomPos = int(Math.random() * clonedArray.length);
             shuffledArray[i] = clonedArray.splice(randomPos, 1)[0];
 
-            if (shuffledArray[i].value == 'true') {
-                trace('---------------- \n\ncorrect answer: ', shuffledArray[i].text, '\n\n----------------');
-            }
+//            if (shuffledArray[i].value == 'true') {
+//                trace('---------------- \n\ncorrect answer: ', shuffledArray[i].text, '\n\n----------------');
+//            }
         }
-
         return shuffledArray;
     }
 }

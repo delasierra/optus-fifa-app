@@ -47,11 +47,6 @@ public class Main extends Sprite {
         stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
         stage.scaleMode = StageScaleMode.NO_SCALE;
         stage.align = StageAlign.TOP_LEFT;
-
-//        var screenWidth:int = stage.fullScreenWidth;
-//        var screenHeight:int = stage.fullScreenHeight;
-//        trace('screenWidth', screenWidth, 'screenHeight', screenHeight);
-//        init();
     }
 
     private function addScreens():void {
@@ -63,7 +58,6 @@ public class Main extends Sprite {
         _screenNavigator.addScreen(SuccessLevelScreen, OptusData.SUCCESS_LEVEL_SCREEN, OptusData.QUESTION_SCREEN);
         _screenNavigator.addScreen(FinalQuizScreen, OptusData.FINAL_QUIZ_SCREEN, OptusData.FORM_SCREEN);
         _screenNavigator.addScreen(PopupMsgScroll, OptusData.LEGAL_POPUP_SCREEN);
-//        _screenNavigator.setBackground(EmbedImages.BACKGROND);
         this.addChild(_screenNavigator);
     }
 
@@ -96,7 +90,6 @@ public class Main extends Sprite {
 
     private function onClickHomeBtn(e:MouseEvent):void {
 
-//        if (e.currentTarget.getCurrentScreenId() != OptusData.FORM_SCREEN) {
         if (_screenNavigator.getCurrentScreenId() != OptusData.FORM_SCREEN) {
             dispatchEvent(new ScreenNavigatorEvent(ScreenNavigatorEvent.CLOSE_POPUP));
             OptusService.quitQuiz();
