@@ -1,30 +1,21 @@
 package screens {
 import assets.EmbedFonts;
 import assets.EmbedImages;
-
 import com.greensock.TweenMax;
 import com.greensock.easing.Power1;
-
 import components.TextFieldPlaceholder;
-
 import components.screenNavigator.ScreenNavigatorEvent;
 import components.screenNavigator.ScreenModel;
 import components.ui.Button;
 import components.ui.Checkbox;
-
 import data.OptusData;
-
 import flash.display.Bitmap;
-
 import flash.events.KeyboardEvent;
-
 import flash.events.MouseEvent;
 import flash.text.TextField;
 import flash.text.TextFieldType;
 import flash.text.TextFormat;
-
 import services.OptusService;
-
 import services.UtilitiesService;
 
 public class FormScreen extends ScreenModel {

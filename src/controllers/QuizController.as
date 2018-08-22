@@ -1,7 +1,6 @@
 package controllers {
 import flash.events.EventDispatcher;
 import flash.events.IEventDispatcher;
-
 import services.UtilitiesService;
 
 public class QuizController extends EventDispatcher {

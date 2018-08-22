@@ -1,23 +1,18 @@
 package screens {
 import assets.EmbedFonts;
 import assets.EmbedImages;
-
 import com.greensock.TweenMax;
 import com.greensock.easing.Back;
-
 import components.screenNavigator.ScreenNavigatorEvent;
 import components.screenNavigator.ScreenModel;
 import components.ui.CheckboxTextButton;
-
 import flash.display.Bitmap;
 import flash.display.Sprite;
 import flash.events.MouseEvent;
 import flash.events.TimerEvent;
-
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.utils.Timer;
-
 import services.OptusService;
 import services.UtilitiesService;
 

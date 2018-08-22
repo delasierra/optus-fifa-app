@@ -1,33 +1,23 @@
 package {
-
 import assets.EmbedImages;
-
 import components.ProgressBar;
-
 import components.screenNavigator.ScreenNavigatorEvent;
-
 import components.screenNavigator.ScreenNavigator;
 import components.ui.Button;
-
 import data.OptusData;
-
 import flash.display.Bitmap;
-
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageDisplayState;
 import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.events.MouseEvent;
-
 import screens.FinalQuizScreen;
-
 import screens.FormScreen;
 import screens.FailLevelScreen;
 import screens.PopupMsgScroll;
 import screens.QuestionSceen;
 import screens.SuccessLevelScreen;
-
 import services.OptusService;
 
 [SWF(frameRate="60", backgroundColor="0x000000")]
