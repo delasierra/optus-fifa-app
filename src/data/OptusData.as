@@ -2,7 +2,15 @@ package data {
 public class OptusData {
 
 //  Tablet Id
-    public static const TABLET_ID:String = 'black';
+    // TODO compile 2 apps with different IDs
+    public static const TABLET_ID:String = 'TEST_YEAHBETTY';
+//    public static const TABLET_ID:String = 'TEST_EMOTIVE';
+//    public static const TABLET_ID:String = 'SYD_PER';
+//    public static const TABLET_ID:String = 'ADE_CHAD';
+//        _iPadId = 'TEST_YEAHBETTY';
+//        _iPadId = 'TEST_EMOTIVE';
+//        _iPadId = 'SYD_PER';
+//        _iPadId = 'ADE_CHAD';
 
 //  Screens Id
     public static const FORM_SCREEN:String = 'form_screen';

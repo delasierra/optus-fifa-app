@@ -1,6 +1,7 @@
 package services {
 import controllers.DataController;
 import controllers.QuizController;
+
 import data.OptusData;
 
 public class OptusService {
@@ -15,7 +16,7 @@ public class OptusService {
         }
 
         if (!_dataController) {
-            _dataController = new DataController();
+            _dataController = new DataController(OptusData.TABLET_ID);
         }
         _dataController.saveUserData(userData);
         _quizController.start();
