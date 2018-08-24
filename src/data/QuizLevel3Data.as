@@ -13,19 +13,19 @@ public class QuizLevel3Data {
         {
             question: 'Which 3 clubs got promoted to the Premier League in 2018?',
             answers: [
-                {text: 'West Brom, Stoke, Swansea', value: 'true'},
-                {text: 'Brentford, West Brom, Swansea', value: 'false'},
-                {text: 'Blackburn Rovers, Stoke, Huddersfield Town', value: 'false'},
-                {text: 'Huddersfield Town, Blackburn Rovers, Stoke', value: 'false'}
+                {text: 'Wolverhampton Wanderers, Cardiff and Fulham', value: 'true'},
+                {text: 'West Brom, Cardiff, Fulham', value: 'false'},
+                {text: 'Blackburn Rovers, Wolverhamption Wanderers', value: 'false'},
+                {text: 'Huddersfield Town, Fulham, West Brom', value: 'false'}
             ]
         },
         {
             question: 'Which 3 clubs got relegated from the Premier League in 2018?',
             answers: [
-                {text: 'Wolverhampton Wanderers, Cardiff and Fulham', value: 'true'},
-                {text: 'West Brom, Cardiff, Fulham', value: 'false'},
-                {text: 'Blackburn Rovers, Wolverhamption Wanderers', value: 'false'},
-                {text: 'Huddersfield Town, Fulham, West Brom', value: 'false'}
+                {text: 'West Brom, Stoke, Swansea', value: 'true'},
+                {text: 'Brentford, West Brom, Swansea', value: 'false'},
+                {text: 'Blackburn Rovers, Stoke, Huddersfield Town', value: 'false'},
+                {text: 'Huddersfield Town, Blackburn Rovers, Stoke', value: 'false'}
             ]
         },
         {
@@ -50,9 +50,9 @@ public class QuizLevel3Data {
             question: 'Which two players have won five Balloon d\'Ors?',
             answers: [
                 {text: 'Cristiano Ronaldo & Lionel Messi', value: 'true'},
-                {text: 'Kaka', value: 'false'},
-                {text: 'Fabio Cannavara', value: 'false'},
-                {text: 'Michael Owen', value: 'false'}
+                {text: 'Kaka & Fabio Cannavara', value: 'false'},
+                {text: 'Fabio Cannavara & Cristiano Ronaldo', value: 'false'},
+                {text: 'Michael Owen & Lionel Messi', value: 'false'}
             ]
         },
         {

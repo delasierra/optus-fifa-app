@@ -103,7 +103,7 @@ public class QuizLevel1Data {
         {
             question: 'Which Spice Girl did David Beckham marry?',
             answers: [
-                {text: 'Posh Spice (Victoria Beckham nee Adams)', value: 'true'},
+                {text: 'Posh Spice (Victoria Adams)', value: 'true'},
                 {text: '"Scary Spice" (Melanie Brown)', value: 'false'},
                 {text: '"Baby Spice" (Emma Bunton)', value: 'false'},
                 {text: '"Ginger Spice" (Geri Halliwell)', value: 'false'}
