@@ -34,6 +34,7 @@ public class OptusService {
 
 
     public static function saveUserAnswer(value:String):void {
+        trace('USER ANSWER: ', value);
         _quizController.saveUserAnswer(value);
     }
 
@@ -42,7 +43,7 @@ public class OptusService {
 
         if (_quizController.isLevelCompleted()) {
 
-            if (_quizController.isQuizCompleted()) {
+            if (_quizController.isQuizCompleted() && _quizController.isUserWinner()) {
 
                 _dataController.addLevelScored();
                 _dataController.addQuizCompleted();

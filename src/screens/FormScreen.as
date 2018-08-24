@@ -195,6 +195,7 @@ public class FormScreen extends ScreenModel {
 
     //inputs checkers
     private function isFormDataOk():Boolean {
+//        return true;
         for (var i:uint = 0; i < _inputs.length; i++) {
             if (_inputs[i].text == "" || _inputs[i].text == undefined || !_legalCheckbox.isChecked) {
                 return false;

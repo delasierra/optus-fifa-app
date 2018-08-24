@@ -94,6 +94,7 @@ public class QuizController extends EventDispatcher {
     }
 
     private function areAllAnswersCorrect():Boolean {
+        trace('[areAllAnswersCorrec]', getNumberCorrectAnswers(), _quesionsTotalPerLevel);
         return getNumberCorrectAnswers() == _quesionsTotalPerLevel;
     }
 

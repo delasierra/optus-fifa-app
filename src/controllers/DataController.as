@@ -30,6 +30,7 @@ public class DataController extends EventDispatcher {
 
     public function addLevelScored():void {
         _quizData.levelsScored++;
+        trace('[CURRENT LEVEL]', _quizData.levelsScored + 1);
     }
 
     public function addQuizCompleted():void {
@@ -45,12 +46,6 @@ public class DataController extends EventDispatcher {
         if (!_apiCallsService) {
             _apiCallsService = new ApiCallsService();
         }
-        // TODO compile 2 apps with different IDs
-//        _iPadId = 'SYD_PER';
-//        _iPadId = 'TEST_CARLOS';
-//        _iPadId = 'TEST_EMOTIVE';
-//        _iPadId = 'SYD_PER';
-//        _iPadId = 'ADE_CHAD';
         _userData = null;
         _quizData = {
             levelsScored: 0,
