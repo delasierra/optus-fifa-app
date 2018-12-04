@@ -2,10 +2,10 @@
 
 date_default_timezone_set('Etc/UTC');
 
-$servername = "optussportfifachallenge.com:2083";
-$username = "optusspo_yb";
-$password = "5MLtZOSKlw2s";
-$dbname = "optusspo_fifa-app";
+$servername = "xxxxx";
+$username = "xxxxx";
+$password = "xxxxx";
+$dbname = "xxxxx";
 
 //vars
 $tabletId=$_POST["tabletId"];
