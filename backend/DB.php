@@ -11,9 +11,9 @@ class DB
     public $mysqli;
 
     public function connectDB(){
-        $servername = "vmsh43.ha-node.net";
-        $username = "optusspo_yb";
-        $password = "5MLtZOSKlw2s"; // user optusspo_yb
+        $servername = "xxxx";
+        $username = "xxxxxx";
+        $password = "xxxxxx"; //
         $dbname = "optusspo_fifa-app";
 
         //        global $mysqli;
