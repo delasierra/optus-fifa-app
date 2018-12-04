@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: csierra
- * Date: 21/3/18
- * Time: 16:16
- */
 class DB
 {
     public $mysqli;
