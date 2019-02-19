@@ -30,7 +30,7 @@ public class UtilitiesService {
             shuffledArray[i] = clonedArray.splice(randomPos, 1)[0];
 
             if (shuffledArray[i].value == 'true') {
-                trace('---------------- \n\ncorrect answer: ', shuffledArray[i].text, '\n\n----------------');
+//                trace('---------------- \n\ncorrect answer: ', shuffledArray[i].text, '\n\n----------------');
             }
         }
         return shuffledArray;

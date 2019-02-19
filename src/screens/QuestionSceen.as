@@ -13,7 +13,7 @@ import flash.events.TimerEvent;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.utils.Timer;
-import services.OptusService;
+import controllers.AppController;
 import services.UtilitiesService;
 
 public class QuestionSceen extends ScreenModel {
@@ -133,7 +133,7 @@ public class QuestionSceen extends ScreenModel {
 
     private function setScreen():void {
         resetScreen();
-        _questionData = OptusService.getQuestionData();
+        _questionData = AppController.getQuestionData();
         addBk();
         addQuestionField();
         setQuestion();
@@ -160,13 +160,13 @@ public class QuestionSceen extends ScreenModel {
         disableAnswerBtns();
         var checkDelayTimer:Timer = new Timer(500, 1);
         checkDelayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onCheckDelay);
-        OptusService.saveUserAnswer(e.currentTarget.value);
+        AppController.saveUserAnswer(e.currentTarget.value);
         checkDelayTimer.start()
     }
 
     private function onCheckDelay(te:TimerEvent):void {
 
-        this.nextScreenId = OptusService.getNextQuizStep();
+        this.nextScreenId = AppController.getNextQuizStep();
 
         var timer:Timer = te.currentTarget as Timer;
         timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onCheckDelay);

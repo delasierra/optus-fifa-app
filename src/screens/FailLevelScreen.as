@@ -9,7 +9,7 @@ import flash.display.Bitmap;
 import flash.events.MouseEvent;
 import flash.text.TextField;
 import flash.text.TextFormat;
-import services.OptusService;
+import controllers.AppController;
 
 public class FailLevelScreen extends ScreenModel {
 
@@ -31,7 +31,7 @@ public class FailLevelScreen extends ScreenModel {
     }
 
     override public function enable():void {
-        _msgTf.text = 'You only got ' + OptusService.getCurrentLevelResults() + ' questions correct';
+        _msgTf.text = 'You only got ' + AppController.getCurrentLevelResults() + ' questions correct';
         this.alpha = 0;
         TweenMax.to (this, .5, {alpha: 1});
         this.visible = true;

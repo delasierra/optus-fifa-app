@@ -9,7 +9,7 @@ import flash.display.Bitmap;
 import flash.events.MouseEvent;
 import flash.text.TextField;
 import flash.text.TextFormat;
-import services.OptusService;
+import controllers.AppController;
 
 public class SuccessLevelScreen extends ScreenModel {
 
@@ -32,7 +32,7 @@ public class SuccessLevelScreen extends ScreenModel {
 
     override public function enable():void {
         this.alpha = 0;
-        _msgTf.text = 'You got all ' + OptusService.getCurrentLevelResults() + ' questions correct';
+        _msgTf.text = 'You got all ' + AppController.getCurrentLevelResults() + ' questions correct';
         TweenMax.to (this, .5, {alpha: 1});
         this.visible = true;
     }

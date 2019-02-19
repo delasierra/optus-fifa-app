@@ -18,7 +18,7 @@ import screens.FailLevelScreen;
 import screens.PopupMsgScroll;
 import screens.QuestionSceen;
 import screens.SuccessLevelScreen;
-import services.OptusService;
+import controllers.AppController;
 
 [SWF(frameRate="60", backgroundColor="0x000000")]
 
@@ -82,7 +82,7 @@ public class Main extends Sprite {
 
         if (_screenNavigator.getCurrentScreenId() != OptusData.FORM_SCREEN) {
             dispatchEvent(new ScreenNavigatorEvent(ScreenNavigatorEvent.CLOSE_POPUP));
-            OptusService.quitQuiz();
+            AppController.quitQuiz();
             _screenNavigator.showHome();
         }
     }
@@ -90,8 +90,8 @@ public class Main extends Sprite {
     private function onScreenChanges(e:ScreenNavigatorEvent):void {
         if (e.currentTarget.getCurrentScreenId() == OptusData.QUESTION_SCREEN) {
             _progressbar.update(
-                    OptusService.getCurrentProgress().currentQuestion,
-                    OptusService.getCurrentProgress().totalQuestions
+                    AppController.getCurrentProgress().currentQuestion,
+                    AppController.getCurrentProgress().totalQuestions
             );
         } else {
             _progressbar.hide();

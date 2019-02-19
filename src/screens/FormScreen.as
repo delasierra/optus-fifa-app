@@ -15,7 +15,7 @@ import flash.events.MouseEvent;
 import flash.text.TextField;
 import flash.text.TextFieldType;
 import flash.text.TextFormat;
-import services.OptusService;
+import controllers.AppController;
 import services.UtilitiesService;
 
 public class FormScreen extends ScreenModel {
@@ -240,7 +240,7 @@ public class FormScreen extends ScreenModel {
     }
 
     private function showNextStep():void {
-        OptusService.startQuiz(getFormData());
+        AppController.startQuiz(getFormData());
         dispatchEvent(new ScreenNavigatorEvent(ScreenNavigatorEvent.NEXT_SCREEN));
     }
 }
