@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: csierra
- * Date: 21/3/18
- * Time: 16:14
- */
 
 // Prevent caching.
 // header('Cache-Control: no-cache, must-revalidate');
