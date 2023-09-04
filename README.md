@@ -1,4 +1,4 @@
-## Optus iOS promo app built in pure ActionScript
+## Optus iOS promo app built in ActionScript 3
 
 ## Building the app
 Add iOS certificates: 
